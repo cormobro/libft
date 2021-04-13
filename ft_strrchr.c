@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:25:14 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:25:17 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:43:26 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@ char	*ft_strrchr(const char *s, int c)
 {
 	int i;
 
-	if (!s)
-		return (0);
 	i = 0;
 	while (s[i])
 		i++;

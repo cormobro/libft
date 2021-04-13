@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:18:37 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:18:40 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:27:52 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 	unsigned char	*j;
 	unsigned char	*k;
 
-	if (!dest || !src)
-		return (0);
 	j = (unsigned char *)src;
 	k = (unsigned char *)dest;
 	i = 0;

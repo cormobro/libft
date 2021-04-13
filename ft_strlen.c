@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:24:08 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:24:11 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:41:51 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if (!s)
-		return (0);
 	i = 0;
 	while (s[i])
 		i++;

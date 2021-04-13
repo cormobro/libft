@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:22:54 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:22:56 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 13:10:24 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *src)
 	int		i;
 	char	*copy;
 
-	if (!src)
-		return (NULL);
 	i = 0;
 	while (src[i])
 		i++;

@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:09:01 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:45:48 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 13:09:40 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int		ft_atoi(const char *str)
 	int		i;
 	int		sign;
 
-	if (!str)
-		return (0);
 	res = 0;
 	sign = 1;
 	i = 0;

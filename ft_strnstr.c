@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:24:56 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:24:58 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 13:08:19 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strnstr(const char *str, const char *substr, size_t len)
 	size_t	i;
 	size_t	j;
 
-	if (!ft_strlen(substr) || !str)
+	if (!ft_strlen(substr))
 		return ((char *)str);
 	i = 0;
 	while (str[i] && i < len)

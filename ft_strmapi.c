@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:24:26 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:24:30 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/10/26 16:29:50 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*new_str;
 
-	if (!s)
+	if (!s || !f)
 		return (0);
 	if (!(new_str = (char *)malloc((ft_strlen(s) + 1) * sizeof(char))))
 		return (0);

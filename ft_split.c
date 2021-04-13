@@ -6,7 +6,7 @@
 /*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 10:22:21 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/10/26 10:22:24 by fbonaert         ###   ########.fr       */
+/*   Updated: 2020/11/03 15:29:31 by fbonaert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	countwords(const char *str, char c)
 
 static char	**split_free(char **tab, int l)
 {
-	while (l)
+	while (l >= 0)
 	{
 		free(tab[l]);
 		l--;
@@ -80,7 +80,7 @@ char		**ft_split(char const *s, char c)
 		if (j)
 		{
 			if (!(tab[k++] = ft_strndup((char *)&s[i], j)))
-				return (split_free(tab, k - 2));
+				return (split_free(tab, k - 1));
 			i = i + j;
 		}
 		if (s[i])
