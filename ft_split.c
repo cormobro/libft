@@ -1,91 +1,112 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: fbonaert <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/26 10:22:21 by fbonaert          #+#    #+#             */
-/*   Updated: 2020/11/03 15:29:31 by fbonaert         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "libft.h"
 
-#include "stdlib.h"
-
-static char	*ft_strndup(char *src, int n)
+static int	wordscounter(char const *s, char c)
 {
-	int		i;
-	char	*copy;
+	int i;
+	int counter;
 
-	if (!src)
-		return (NULL);
 	i = 0;
-	if (!(copy = (char *)malloc((n + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		copy[i] = src[i];
+	counter = 1;
+	while (s[i] == c)
 		i++;
-	}
-	copy[i] = '\0';
-	return (copy);
-}
-
-static int	countwords(const char *str, char c)
-{
-	int	i;
-	int	words;
-
-	words = 0;
-	if (str[0] != c)
-		words++;
-	i = 1;
-	while (str[i])
-	{
-		if (str[i] != c && str[i - 1] == c)
-			words++;
-		i++;
-	}
-	return (words);
-}
-
-static char	**split_free(char **tab, int l)
-{
-	while (l >= 0)
-	{
-		free(tab[l]);
-		l--;
-	}
-	free(tab);
-	return (0);
-}
-
-char		**ft_split(char const *s, char c)
-{
-	char	**tab;
-	int		i;
-	int		j;
-	int		k;
-
-	if (!s || !(tab = (char **)malloc((countwords(s, c) + 1) * sizeof(char *))))
-		return (0);
-	k = 0;
-	i = 0;
+	if (s[i] && s[i] != c)
+		counter ++;
 	while (s[i])
 	{
-		j = 0;
-		while (s[i + j] && s[i + j] != c)
-			j++;
-		if (j)
-		{
-			if (!(tab[k++] = ft_strndup((char *)&s[i], j)))
-				return (split_free(tab, k - 1));
-			i = i + j;
-		}
-		if (s[i])
-			i++;
+		if (s[i] == c && s[i + 1] != c && s[i + 1])
+			counter++;
+		i++;
 	}
-	tab[k] = 0;
-	return (tab);
+	return (counter);
+}
+
+static char *filler(char const *s, int i, int j)
+{
+	int len;
+	char *word;
+	int k;
+
+	len = i - j + 1;
+	if ((i != 0) && (j != 0))
+		word = (char *)malloc((len + 1) * sizeof(char));
+	else
+		word = (char *)malloc(len * sizeof(char));
+	if (!word)
+		return (0);
+	k = 0;
+	while(k < len && len > 1)
+	{
+		word[k] = s[j];
+		k++;
+		j++;
+	}
+	word[k] = '\0';
+	return (word);
+}
+
+static char **split_free(char **tab, int k)
+{
+	while (k >= 0)
+	{
+		free(tab[k]);
+		k--;
+	}
+	free(tab);
+	return (NULL);
+}
+
+static char **cutter(char const *s, char c, char **res)
+{
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	k = 0;
+	while (s[i] == c)
+		i++;
+	while (s[i])
+	{
+		j = i;
+		while(s[i] != c && s[i])
+		{
+			i++;
+		}
+		if (j != i)
+		{
+			res[k] = filler(s, i - 1, j);
+			if (!res[k])
+				return (split_free(res, k));
+			k++;
+		}
+		i++;
+	}
+	return (res);
+}
+
+char **ft_split(char const *s, char c)
+{
+	int i;
+	char **res;
+
+	if (!s)
+		return (NULL);
+	res = (char **)malloc(wordscounter(s, c) * sizeof(char *));
+	if (!res)
+		return (NULL);
+	if (wordscounter(s, c) > 1)
+	{
+		res = cutter(s, c, res);
+		res[wordscounter(s, c) - 1] = filler(s, 0, 0);
+	}
+	else
+	{
+		res[0] = (char *)malloc(1 * sizeof(char));
+		if (!res[0])
+			return (split_free(res, 0));
+		res[0][0] = '\0';
+	}
+	if (!res)
+		return (NULL);
+	return (res);
 }
