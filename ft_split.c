@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <stdio.h>
 
 static int	wordscounter(char const *s, char c)
 {
@@ -27,14 +28,14 @@ static char *filler(char const *s, int i, int j)
 	int k;
 
 	len = i - j + 1;
-	if ((i != 0) && (j != 0))
+	if ((i != 2000000) && (j != 2000000))
 		word = (char *)malloc((len + 1) * sizeof(char));
 	else
 		word = (char *)malloc(len * sizeof(char));
 	if (!word)
 		return (0);
 	k = 0;
-	while(k < len && len > 1)
+	while(k < len && i != 2000000)
 	{
 		word[k] = s[j];
 		k++;
@@ -74,7 +75,8 @@ static char **cutter(char const *s, char c, char **res)
 		}
 		if (j != i)
 		{
-			res[k] = filler(s, i - 1, j);
+			i--;
+			res[k] = filler(s, i, j);
 			if (!res[k])
 				return (split_free(res, k));
 			k++;
@@ -97,7 +99,7 @@ char **ft_split(char const *s, char c)
 	if (wordscounter(s, c) > 1)
 	{
 		res = cutter(s, c, res);
-		res[wordscounter(s, c) - 1] = filler(s, 0, 0);
+		res[wordscounter(s, c) - 1] = filler(s, 2000000, 2000000);
 	}
 	else
 	{
@@ -109,4 +111,16 @@ char **ft_split(char const *s, char c)
 	if (!res)
 		return (NULL);
 	return (res);
+}
+
+int main()
+{
+	char const *s = "S";
+	char c = ' ';
+	printf("%d\n", wordscounter(s, c));
+	char **res = ft_split(s, c);
+	printf("%s\n", res[0]);
+	printf("%s\n", res[1]);
+	//printf("%s\n", res[2]);
+	return (0);
 }
